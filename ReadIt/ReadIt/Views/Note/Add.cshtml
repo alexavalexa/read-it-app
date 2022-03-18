@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Add a note: </h1>
+<form asp-action="Add">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title">
+    </div>
+
+    <div class="form-group">
+        <label for="note's 'text">Your note</label>
+        <textarea class="form-control" id="" rows="3"></textarea>
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a asp-action="Index" asp-controller="Note">
+            <button type="button" class="btn btn-secondary">Cancel</button>
+        </a>
+    </div>
+</form>
