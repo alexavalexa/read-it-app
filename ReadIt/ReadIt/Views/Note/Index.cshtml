@@ -1,0 +1,29 @@
+﻿@model Data
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Book Title</th>
+                <th scope="col">Note</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var note in Model.Notes)
+            {
+                <tr>
+                    <td>@note.Id</td>
+                    <td>@Model.Books.FirstOrDefault(p => p.Id == note.BookId).Title</td>
+                    <td>@note.Text</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

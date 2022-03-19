@@ -27,6 +27,7 @@ namespace ReadIt
         {
             services.AddControllersWithViews();
             services.AddScoped<IBookService, BookService>();
+            services.AddScoped<INoteService, NoteService>();
             services.AddSingleton<IData, Data>();
         }
 

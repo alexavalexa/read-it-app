@@ -8,5 +8,6 @@ namespace ReadIt.Models
     public interface IData
     {
         List<Book> Books { get; set; }
+        List<Note> Notes { get; set; }
     }
 }

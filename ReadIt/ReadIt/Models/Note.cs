@@ -7,18 +7,20 @@ namespace ReadIt.Models
 {
     public class Note
     {
-        private string title;
+        private static int id = 0;
+        private int bookId;
         private string text;
-        public  Note (string title, string text)
+
+        public Note(int bookId, string text)
         {
-           Title = title;
+            id++;
+            Id = id;
+            BookId = bookId;
             Text = text;
         }
 
-
-
-        public int Id { get; set; }
-        public string Title { get; set; }
+        public int Id { get; }
+        public int BookId { get; set; }
         public string Text { get; set; }
     }
 }

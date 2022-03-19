@@ -8,7 +8,7 @@
 
 <div>
     <a asp-action="Add" asp-controller="Book">
-        <button type="button"  class="btn btn-success">Add Book</button>
+        <button type="button" class="btn btn-success">Add Book</button>
     </a>
 </div>
 
@@ -24,19 +24,22 @@
         <tbody>
             @foreach (var book in Model)
             {
-            <tr>
-                <td>@book.Id</td>
-                <td>@book.Title</td>
-                <td>@book.Author</td>
-                <td>
-                    <a asp-action="Edit" asp-route-Id="@book.Id">
-                        <button type="button" class="btn btn-warning">Edit</button>
-                    </a>
-                    <a asp-action="Delete" asp-route-Id="@book.Id">
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>@book.Id</td>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Book" asp-route-Id="@book.Id">
+                            <button type="button" class="btn btn-warning">Edit</button>
+                        </a>
+                        <a asp-action="Delete" asp-controller="Book" asp-route-Id="@book.Id">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </a>
+                        <a asp-action="Add" asp-controller="Note" asp-route-Id="@book.Id">
+                            <button type="button" class="btn btn-success">Add note</button>
+                        </a>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

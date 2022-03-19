@@ -1,24 +1,22 @@
-﻿@*
+﻿@model Note
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 
 <h1>Add a note: </h1>
-<form asp-action="Add">
+<form asp-action="Add" asp-controller="Note">
     <div class="form-group">
-        <label for="exampleFormControlInput1">Title</label>
-        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Title">
+        <label for="book's title">"Book Id: @Model.BookId"</label>
     </div>
-
     <div class="form-group">
-        <label for="note's 'text">Your note</label>
-        <textarea class="form-control" id="" rows="3"></textarea>
+        <label for="note">Text</label>
+        <input type="text" class="form-control" name="author" placeholder="Enter note" value="@Model.Text">
     </div>
-
     <div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a asp-action="Index" asp-controller="Note">
+        <button type="submit" class="btn btn-primary">Confirm</button>
+        <a asp-action="Index" asp-controller="Book">
             <button type="button" class="btn btn-secondary">Cancel</button>
         </a>
     </div>

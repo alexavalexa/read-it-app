@@ -6,12 +6,43 @@ using System.Threading.Tasks;
 
 namespace ReadIt.Services
 {
-    public class NoteService
+    public class NoteService : INoteService
     {
-        public Note Create (string title, string text)
+        private IData data;
+        public NoteService(IData data)
         {
-            Note note = new Note(title, text);
+            this.data = data;
+        }
+        public List<Note> GetAll()
+        {
+            return data.Notes;
+        }
+
+        public Note Add(int bookId, string text)
+        {
+            Note note = new Note(bookId, text);
+            data.Notes.Add(note);
             return note;
+        }
+
+
+        public Note Edit(int id, int bookId, string text)
+        {
+            Note note = GetById(id);
+            note.BookId = bookId;
+            note.Text = text;
+            return note;
+        }
+        public Note Delete(int id)
+        {
+            Note note = GetById(id);
+            data.Notes.Remove(note);
+            return note;
+        }
+
+        public Note GetById(int id)
+        {
+            return data.Notes.FirstOrDefault(p => p.Id == id);
         }
     }
 }
