@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ReadIt.Models;
+using ReadIt.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +28,23 @@ namespace ReadIt
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<LibraryDbContext>(options =>
+            {
+                options.UseMySQL("Server=localhost; Database=read_it; Uid=root; Pwd=123456789");
+                services.AddIdentity<User, IdentityRole<int>>(options =>
+                {
+                    options.User.RequireUniqueEmail = false;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequiredLength = 1;
+
+                })
+               .AddEntityFrameworkStores<LibraryDbContext>()
+               .AddDefaultTokenProviders();
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
