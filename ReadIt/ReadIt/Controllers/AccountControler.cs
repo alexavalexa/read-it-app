@@ -26,17 +26,17 @@ namespace ReadIt.Controllers
             this.signInManager = signInManager;
         }
 
-        public IActionResult Registar()
+        public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Registar(UserDTO userDTO)
+        public async Task<IActionResult> Register(UserDTO userDTO)
         {
             if (userDTO.Password != userDTO.ConfirmPassword)
             {
-                throw new ArgumentException("Please, check your password again and confirm it correctly!");
+                //throw new ArgumentException("Please, check your password again and confirm it correctly!");
                 return View();
             }
 

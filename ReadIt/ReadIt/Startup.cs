@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReadIt.Models;
 using ReadIt.Models.Entities;
+using ReadIt.services;
+using ReadIt.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +45,10 @@ namespace ReadIt
                 })
                .AddEntityFrameworkStores<LibraryDbContext>()
                .AddDefaultTokenProviders();
+
+                services.AddScoped<BookService>();
+                services.AddScoped<NoteService>();
+                services.AddDistributedMemoryCache();
 
             });
         }

@@ -14,26 +14,26 @@ using ReadIt.Models.DTO;
 using Microsoft.AspNetCore.Identity;
 using ReadIt.Models.Entities;
 using ReadIt.services;
-using ReadIt.Services;
 
 namespace ReadIt.Controllers
 {
-    public class NoteController : Controller
+    public class BookController : Controller
     {
-        private NoteService noteService;
+        private BookService bookService;
         private UserManager<User> userManager;
 
-        public NoteController(NoteService noteService, UserManager<User> userManager)
+        public BookController(BookService bookService, UserManager<User> userManager)
         {
-            this.noteService = noteService;
+            this.bookService = bookService;
             this.userManager = userManager;
         }
 
+
         public IActionResult Index()
         {
-            List<NoteDTO> Notes = noteService.GetAll();
+            List<BookDTO> books = bookService.GetAll();
 
-            return View(Notes);
+            return View(books);
         }
 
         public IActionResult Create()
@@ -42,34 +42,36 @@ namespace ReadIt.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Note note)
+        public async Task<IActionResult> Create(Book book)
         {
             User user = await userManager.GetUserAsync(User).ConfigureAwait(false);
-            noteService.Create(note, user);
+            bookService.Create(book, user);
 
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
-        public IActionResult Edit(Note note)
+        public IActionResult Edit(Book book)
         {
-            noteService.Edit(note.Id, note.Title, note.Text);
+            bookService.Edit(book.Id, book.Title, book.Author);
 
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int id)
         {
-            Note Note = noteService.GetById(id);
-            return View(Note);
+            Book book = bookService.GetById(id);
+            return View(book);
         }
 
         [HttpPost]
         public IActionResult DeleteConfirm(int id)
         {
-            noteService.Delete(id);
+            bookService.Delete(id);
 
             return RedirectToAction(nameof(Index));
         }
     }
 }
+    
+
